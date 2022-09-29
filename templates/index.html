@@ -1,0 +1,52 @@
+{% extends "layout.html" %} {% block content %}
+
+<h1 class="display-4 text-center mt-4" style="color: white;">CREA Y ADMINISTRA TU LISTA</h1>
+
+<div class="bg-light p-5 rounded-lg m-3">
+
+  <h1 class="display-4">TASK APP</h1>
+
+  <p class="lead">
+    Ingresa el item que deseas agregar a la lista de pendientes
+  </p>
+
+  <hr class="my-4" />
+
+  <p>
+    PARRAFO DE PRUEBA
+  </p>
+
+  <div class="row">
+    <div class="col-md-4 offset-md-4 my-auto">
+        <div class="card">
+            <div class="cardheader p-2">
+                <!--Aqui en el action es donde se coloca el nombre de la direccion que colocamos en la otra funcion-->
+                <!--y se el coloca el metodo de envio ya sea get o post-->
+                <form action="/create-task" method="post">
+                    <div class="form-group">
+                        <input type="text" name="contenido" placeholder="Tarea" class="form-control" autofocus>
+                    </div>
+
+                    <hr class="my-4" />
+
+                    <button type="submit" name="contenido" class="btn btn-primary btn-block">
+                        Guardar
+                    </button>
+                </form>
+            </div>
+
+            <div class="cardbody">
+                <ul>
+                  {% for tareas in lista_tareas %} <!--Esta es una forma de utilizar funciones en el html-->
+                  <li>
+                    {{tareas.content}}
+                  </li>
+                  {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+  </div>
+
+</div>
+{% endblock %}
