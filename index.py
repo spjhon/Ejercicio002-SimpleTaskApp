@@ -1,6 +1,7 @@
 # Ejercicio de youtube https://www.youtube.com/watch?v=V9VU1g4IWlg
 
-from distutils.command.config import config
+
+
 import sqlite3
 from flask import Flask, render_template, redirect, url_for
 from flask import request
@@ -27,6 +28,19 @@ def home(): # Esta funcion retorna algo al navegador
 def create(): 
     task = Task(content=request.form['contenido'], done=False)
     db.session.add(task) #Aqui se le agrega el task hacia la base de datos
+    db.session.commit()
+    return redirect('/')
+
+@app.route('/delete/<id>')
+def delete(id):
+    borrados = Task.query.filter_by(llave=int(id)).delete()
+    db.session.commit()
+    return redirect('/')
+
+@app.route('/done/<id>')
+def done(id):
+    estaHecho = Task.query.filter_by(llave=int(id)).first()
+    estaHecho.done = not(estaHecho.done)
     db.session.commit()
     return redirect('/')
     

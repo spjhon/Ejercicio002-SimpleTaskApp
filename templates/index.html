@@ -36,10 +36,14 @@
             </div>
 
             <div class="cardbody">
-                <ul>
+                <ul class="list-group">
                   {% for tareas in lista_tareas %} <!--Esta es una forma de utilizar funciones en el html-->
-                  <li>
+                  <li class="list-group-item">
+                    <span class="{% if tareas.done %} done {% endif %}">
                     {{tareas.content}}
+                    </span>
+                    <a href="/done/{{tareas.llave}}" class="btn btn-success btn-sm">HECHO</a>
+                    <a href="/delete/{{tareas.llave}}" class="btn btn-danger btn-sm">BORRAR</a> <!--CONCATENADO-->
                   </li>
                   {% endfor %}
                 </ul>
